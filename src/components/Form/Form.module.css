@@ -1,0 +1,25 @@
+.form {
+  width: 350px;
+}
+
+.button {
+  display: block;
+  padding: 8px 20px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.button:hover,
+.button:focus {
+  color: #fff;
+  background-color: rgb(73, 100, 189);
+}
+
+.input:focus,
+.button:focus,
+.deleteBtn:focus {
+  outline: 2px solid rgb(14, 9, 78);
+}

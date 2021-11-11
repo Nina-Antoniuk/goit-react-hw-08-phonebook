@@ -1,0 +1,27 @@
+.listItem {
+  display: grid;
+  grid-template-columns: 45% 35% 20%;
+  align-items: center;
+  padding: 8px 10px 8px 20px;
+  border-bottom: 1px solid rgba(73, 100, 189, 0.534);
+}
+
+.name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.deleteBtn {
+  padding: 5px 10px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+  color: rgb(14, 9, 78);
+  background-color: rgb(252, 170, 170);
+}

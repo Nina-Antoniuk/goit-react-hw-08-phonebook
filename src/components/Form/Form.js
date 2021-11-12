@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 import { v1 as uuidv1 } from 'uuid';
-import PropTypes from 'prop-types';
 import s from './Form.module.css';
-import * as actions from '../../redux/form/Form-action';
+import * as actions from '../../redux/contacts/сontacts-action';
 
-function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
+function Form({ newName, newNumber, getName, getNumber, reset, contact }) {
   const submit = e => {
     e.preventDefault();
-    addContact({
+    contact({
       name: newName,
       number: newNumber,
       id: uuidv1(),
@@ -61,19 +60,15 @@ const mapDispatchToProps = dispatch => {
     getName: name => dispatch(actions.getName(name)),
     getNumber: num => dispatch(actions.getNumber(num)),
     reset: () => dispatch(actions.resetInputValue()),
-    addContact: contact => dispatch(actions.addContact(contact)),
+    contact: contact => dispatch(actions.addContact(contact)),
   };
 };
 
 const matStateToProps = state => {
   return {
-    newName: state.form.name,
-    newNumber: state.form.number,
+    newName: state.contacts.name,
+    newNumber: state.contacts.number,
   };
-};
-
-Form.propTypes = {
-  onSubmit: PropTypes.func,
 };
 
 export default connect(matStateToProps, mapDispatchToProps)(Form);

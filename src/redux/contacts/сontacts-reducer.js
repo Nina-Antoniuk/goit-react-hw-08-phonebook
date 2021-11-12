@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { types } from './Form-types';
+import { types } from './сontacts-types';
 
 const name = (state = '', { type, payload }) => {
   switch (type) {
@@ -27,18 +27,21 @@ const number = (state = '', { type, payload }) => {
   }
 };
 
-const contacts = (state = [], { type, payload }) => {
+const contact = (state = [], { type, payload }) => {
   switch (type) {
     case types.ADD:
       return [...state, payload];
+
+    case types.DELETE:
+      return state.filter(({ id }) => id !== payload);
 
     default:
       return state;
   }
 };
 
-export const formReducer = combineReducers({
+export const contactsReducer = combineReducers({
   name,
   number,
-  contacts,
+  contact,
 });

@@ -1,29 +1,34 @@
-// getName, getNumber, resetInputValue, add
-
 export const getName = name => {
   return {
-    type: 'form/getName',
+    type: 'contacts/getName',
     payload: name,
   };
 };
 
 export const getNumber = num => {
   return {
-    type: 'form/getNumber',
+    type: 'contacts/getNumber',
     payload: num,
   };
 };
 
 export const resetInputValue = () => {
   return {
-    type: 'form/resetInputValue',
+    type: 'contacts/resetInputValue',
     payload: '',
   };
 };
 
 export const addContact = contact => {
   return {
-    type: 'form/add',
+    type: 'contacts/add',
     payload: contact,
+  };
+};
+
+export const deleteContact = id => {
+  return {
+    type: 'contacts/delete',
+    payload: id,
   };
 };

@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v1 as uuidv1 } from 'uuid';
+// import PropTypes from 'prop-types';
+import { filteredContacts } from '../../redux/filter/filter-action';
 
-function Filter({ id, value, onChange }) {
+function Filter({ value, onChange }) {
+  const inputID = uuidv1();
   return (
     <>
-      <label className="label" htmlFor={id}>
+      <label className="label" htmlFor={inputID}>
         Find contacts by name
       </label>
 
       <input
-        id={id}
+        id={inputID}
         className="input"
         name="filter"
         type="text"
@@ -16,16 +20,22 @@ function Filter({ id, value, onChange }) {
         title="Введите имя которое ищите"
         autoComplete="off"
         value={value}
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
       />
     </>
   );
 }
 
-Filter.propTypes = {
-  id: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
+const mapDispatchToProps = dispatch => {
+  return {
+    onChange: name => dispatch(filteredContacts(name)),
+  };
 };
 
-export default Filter;
+const matStateToProps = state => {
+  return {
+    value: state.filterContactsReducer,
+  };
+};
+
+export default connect(matStateToProps, mapDispatchToProps)(Filter);

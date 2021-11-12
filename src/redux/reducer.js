@@ -1,32 +1,8 @@
-const initValue = {
-  name: '',
-  number: '',
-  contacts: [],
-  searchValue: '',
-};
+import { combineReducers } from 'redux';
+import { contactsReducer } from './contacts/сontacts-reducer';
+import { filterContactsReducer } from './filter/filter-reducer';
 
-function reducer(state = initValue, { type, payload }) {
-  switch (type) {
-    case 'form/getName':
-      return { ...state, name: payload };
-    case 'form/getNumber':
-      return { ...state, number: payload };
-    case 'form/resetInputValue':
-      return { ...state, name: '', number: '' };
-    case 'form/add':
-      state.contacts.push(payload);
-      return { ...state };
-    // return { ...state, contacts: state.contacts.push(payload) } // contacts: 1
-    case 'contacts/delete':
-      return {
-        ...state,
-        contacts: state.contacts.filter(el => el.id !== payload),
-      };
-    case 'searchValue/get':
-      return { ...state, searchValue: payload };
-    default:
-      return state;
-  }
-}
-
-export default reducer;
+export const rootReducer = combineReducers({
+  contacts: contactsReducer,
+  filteredContacts: filterContactsReducer,
+});

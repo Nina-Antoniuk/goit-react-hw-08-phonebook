@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import s from './Contacts.module.css';
 import { deleteContact } from '../../redux/contacts/сontacts-action';
 import ContactsListElement from '../ContactsListElement';
@@ -28,9 +27,9 @@ const getVisibleContatcs = (contacts, searchValue = '') => {
   });
 };
 
-const mapStateToProp = ({ contacts: { contact }, filteredContacts }) => {
+const mapStateToProp = ({ contact, filter }) => {
   return {
-    allContacts: getVisibleContatcs(contact, filteredContacts),
+    allContacts: getVisibleContatcs(contact, filter),
   };
 };
 

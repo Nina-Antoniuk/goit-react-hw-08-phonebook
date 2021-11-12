@@ -1,16 +1,11 @@
 import { connect } from 'react-redux';
-import { v1 as uuidv1 } from 'uuid';
 import s from './Form.module.css';
 import * as actions from '../../redux/contacts/сontacts-action';
 
-function Form({ newName, newNumber, getName, getNumber, reset, contact }) {
+function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
   const submit = e => {
     e.preventDefault();
-    contact({
-      name: newName,
-      number: newNumber,
-      id: uuidv1(),
-    });
+    addContact(newName, newNumber);
     reset();
   };
 
@@ -59,15 +54,15 @@ const mapDispatchToProps = dispatch => {
   return {
     getName: name => dispatch(actions.getName(name)),
     getNumber: num => dispatch(actions.getNumber(num)),
-    reset: () => dispatch(actions.resetInputValue()),
-    contact: contact => dispatch(actions.addContact(contact)),
+    reset: () => dispatch(actions.resetInputValue('')),
+    addContact: (name, number) => dispatch(actions.addContact(name, number)),
   };
 };
 
 const matStateToProps = state => {
   return {
-    newName: state.contacts.name,
-    newNumber: state.contacts.number,
+    newName: state.name,
+    newNumber: state.number,
   };
 };
 

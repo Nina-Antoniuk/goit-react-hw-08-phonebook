@@ -1,47 +1,30 @@
+import { createReducer } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import { types } from './сontacts-types';
+import * as actions from './сontacts-action';
 
-const name = (state = '', { type, payload }) => {
-  switch (type) {
-    case types.GET_NAME:
-      return (state = payload);
+const name = createReducer('', {
+  [actions.getName.type]: (state, action) => (state = action.payload),
+  [actions.resetInputValue.type]: (state, action) => (state = action.payload),
+});
 
-    case types.RESET:
-      return (state = payload);
+const number = createReducer('', {
+  [actions.getNumber.type]: (state, action) => (state = action.payload),
+  [actions.resetInputValue.type]: (state, action) => (state = action.payload),
+});
 
-    default:
-      return state;
-  }
-};
+const contact = createReducer([], {
+  [actions.addContact.type]: (state, action) => [...state, action.payload],
+  [actions.deleteContact.type]: (state, action) =>
+    state.filter(({ id }) => id !== action.payload),
+});
 
-const number = (state = '', { type, payload }) => {
-  switch (type) {
-    case types.GET_NUMBER:
-      return (state = payload);
-
-    case types.RESET:
-      return (state = payload);
-
-    default:
-      return state;
-  }
-};
-
-const contact = (state = [], { type, payload }) => {
-  switch (type) {
-    case types.ADD:
-      return [...state, payload];
-
-    case types.DELETE:
-      return state.filter(({ id }) => id !== payload);
-
-    default:
-      return state;
-  }
-};
+const filter = createReducer('', {
+  [actions.filteredContacts.type]: (state, action) => (state = action.payload),
+});
 
 export const contactsReducer = combineReducers({
   name,
   number,
   contact,
+  filter,
 });

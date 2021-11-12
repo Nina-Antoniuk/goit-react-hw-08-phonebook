@@ -1,7 +1,5 @@
 // import { useState, useEffect } from 'react';
-// import { connect } from 'react-redux';
 import './App.css';
-// import * as actions from './redux/actions';
 import Form from './components/Form';
 import Filter from './components/Filter';
 import Contacts from './components/Contacts';

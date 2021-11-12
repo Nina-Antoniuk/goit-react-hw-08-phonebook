@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { v1 as uuidv1 } from 'uuid';
-// import PropTypes from 'prop-types';
-import { filteredContacts } from '../../redux/filter/filter-action';
+import { filteredContacts } from '../../redux/contacts/сontacts-action';
 
 function Filter({ value, onChange }) {
   const inputID = uuidv1();
@@ -20,7 +19,7 @@ function Filter({ value, onChange }) {
         title="Введите имя которое ищите"
         autoComplete="off"
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={onChange}
       />
     </>
   );
@@ -28,13 +27,13 @@ function Filter({ value, onChange }) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: name => dispatch(filteredContacts(name)),
+    onChange: e => dispatch(filteredContacts(e.target.value)),
   };
 };
 
 const matStateToProps = state => {
   return {
-    value: state.filterContactsReducer,
+    value: state.filter,
   };
 };
 

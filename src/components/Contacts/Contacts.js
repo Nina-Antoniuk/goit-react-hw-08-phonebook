@@ -1,9 +1,13 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './Contacts.module.css';
+import { getVisibleContatcs } from '../../redux/contacts/contacts-selectors';
 import { deleteContact } from '../../redux/contacts/сontacts-action';
 import ContactsListElement from '../ContactsListElement';
 
-function Contacts({ allContacts, deleteContact }) {
+function Contacts() {
+  const allContacts = useSelector(getVisibleContatcs);
+  const dispatch = useDispatch();
+
   return (
     <ul className={s.list}>
       {allContacts.map(el => {
@@ -13,30 +17,12 @@ function Contacts({ allContacts, deleteContact }) {
             id={el.id}
             name={el.name}
             number={el.number}
-            onClick={e => deleteContact(e.target.parentNode.id)}
+            onClick={e => dispatch(deleteContact(e.target.parentNode.id))}
           />
         );
       })}
     </ul>
   );
 }
-const getVisibleContatcs = (contacts, searchValue = '') => {
-  const normalizedFilter = searchValue.toLocaleLowerCase();
-  return contacts.filter(contact => {
-    return contact.name.toLowerCase().includes(normalizedFilter);
-  });
-};
 
-const mapStateToProp = ({ contact, filter }) => {
-  return {
-    allContacts: getVisibleContatcs(contact, filter),
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteContact: id => dispatch(deleteContact(id)),
-  };
-};
-
-export default connect(mapStateToProp, mapDispatchToProps)(Contacts);
+export default Contacts;

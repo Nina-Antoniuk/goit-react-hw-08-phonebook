@@ -1,12 +1,36 @@
-import { connect } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import s from './Form.module.css';
 import * as actions from '../../redux/contacts/сontacts-action';
 
-function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
+function Form() {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+
+  const inputChange = e => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        console.log('oops');
+    }
+  };
+
   const submit = e => {
     e.preventDefault();
-    addContact(newName, newNumber);
+    dispatch(actions.addContact({ name, number }));
     reset();
+  };
+
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
   return (
@@ -24,8 +48,8 @@ function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
           Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
         required
         autoComplete="off"
-        value={newName}
-        onChange={e => getName(e.target.value)}
+        value={name}
+        onChange={inputChange}
       />
       <label className="label" htmlFor="numberId">
         Number
@@ -40,8 +64,8 @@ function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
           круглые скобки и может начинаться с +"
         required
         autoComplete="off"
-        value={newNumber}
-        onChange={e => getNumber(e.target.value)}
+        value={number}
+        onChange={inputChange}
       />
       <button className={s.button} type="submit">
         Add contact
@@ -50,20 +74,4 @@ function Form({ newName, newNumber, getName, getNumber, reset, addContact }) {
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getName: name => dispatch(actions.getName(name)),
-    getNumber: num => dispatch(actions.getNumber(num)),
-    reset: () => dispatch(actions.resetInputValue('')),
-    addContact: (name, number) => dispatch(actions.addContact(name, number)),
-  };
-};
-
-const matStateToProps = state => {
-  return {
-    newName: state.name,
-    newNumber: state.number,
-  };
-};
-
-export default connect(matStateToProps, mapDispatchToProps)(Form);
+export default Form;

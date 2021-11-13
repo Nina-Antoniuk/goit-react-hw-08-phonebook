@@ -1,9 +1,17 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v1 as uuidv1 } from 'uuid';
 import { filteredContacts } from '../../redux/contacts/сontacts-action';
+import { getSearchValue } from '../../redux/contacts/contacts-selectors';
 
-function Filter({ value, onChange }) {
+function Filter() {
+  const value = useSelector(getSearchValue);
+  const dispatch = useDispatch();
   const inputID = uuidv1();
+
+  const onChange = e => {
+    dispatch(filteredContacts(e.target.value));
+  };
+
   return (
     <>
       <label className="label" htmlFor={inputID}>
@@ -25,16 +33,4 @@ function Filter({ value, onChange }) {
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onChange: e => dispatch(filteredContacts(e.target.value)),
-  };
-};
-
-const matStateToProps = state => {
-  return {
-    value: state.filter,
-  };
-};
-
-export default connect(matStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

@@ -1,13 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 import { v1 as uuidv1 } from 'uuid';
 
-export const getName = createAction('contacts/getName');
-export const getNumber = createAction('contacts/getNumber');
-export const resetInputValue = createAction('contacts/resetInputValue');
-export const addContact = createAction('contacts/add', (name, number) => ({
+export const addContact = createAction('contacts/add', contact => ({
   payload: {
-    name,
-    number,
+    ...contact,
     id: uuidv1(),
   },
 }));

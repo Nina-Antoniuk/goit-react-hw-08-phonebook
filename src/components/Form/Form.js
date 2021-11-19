@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './Form.module.css';
 import * as actions from '../../redux/contacts/сontacts-action';
+import { addContact } from '../../redux/contacts/contacts-operation';
 
 function Form() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
 
   const inputChange = e => {
@@ -15,7 +16,7 @@ function Form() {
         setName(value);
         break;
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
       default:
         console.log('oops');
@@ -24,13 +25,13 @@ function Form() {
 
   const submit = e => {
     e.preventDefault();
-    dispatch(actions.addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
     reset();
   };
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -64,7 +65,7 @@ function Form() {
           круглые скобки и может начинаться с +"
         required
         autoComplete="off"
-        value={number}
+        value={phone}
         onChange={inputChange}
       />
       <button className={s.button} type="submit">

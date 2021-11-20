@@ -8,12 +8,12 @@ export const addContactsRequest = createAction('contacts/addContactsRequest');
 export const addContactsSuccsess = createAction('contacts/addContactsSuccsess');
 export const addContactsError = createAction('contacts/addContactsError');
 
-// export const addContact = createAction('contacts/add', contact => ({
-//   payload: {
-//     ...contact,
-//     id: uuidv1(),
-//   },
-// }));
+export const deleteContactRequest = createAction(
+  'contacts/deleteContactRequest',
+);
+export const deleteContactSuccsess = createAction(
+  'contacts/deleteContactSuccsess',
+);
+export const deleteContactError = createAction('contacts/deleteContactError');
 
-export const deleteContact = createAction('contacts/delete');
 export const filteredContacts = createAction('contacts/filter');

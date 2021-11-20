@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { v1 as uuidv1 } from 'uuid';
-import { filteredContacts } from '../../redux/contacts/сontacts-action';
-import { getSearchValue } from '../../redux/contacts/contacts-selectors';
+import { filteredContacts } from 'redux/contacts/сontacts-action';
+import { getSearchValue } from 'redux/contacts/contacts-selectors';
 
 function Filter() {
   const value = useSelector(getSearchValue);

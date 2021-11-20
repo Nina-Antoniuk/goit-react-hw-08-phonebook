@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './Form.module.css';
-import * as actions from '../../redux/contacts/сontacts-action';
-import { addContact } from '../../redux/contacts/contacts-operation';
+import { addContact } from 'redux/contacts/contacts-operation';
+import { getContacts } from 'redux/contacts/contacts-selectors';
 
 function Form() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const inputChange = e => {
     const { name, value } = e.target;
@@ -25,6 +26,12 @@ function Form() {
 
   const submit = e => {
     e.preventDefault();
+    const condition = contacts.find(el => el.name === name);
+    if (condition) {
+      alert(`Contact ${name} is already exist!`);
+      reset();
+      return;
+    }
     dispatch(addContact({ name, phone }));
     reset();
   };

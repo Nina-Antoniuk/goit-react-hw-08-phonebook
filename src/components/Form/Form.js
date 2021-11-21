@@ -26,7 +26,10 @@ function Form() {
 
   const submit = e => {
     e.preventDefault();
-    const condition = contacts.find(el => el.name === name);
+    const normalizedName = name.toLowerCase();
+    const condition = contacts.find(
+      el => el.name.toLowerCase() === normalizedName,
+    );
     if (condition) {
       alert(`Contact ${name} is already exist!`);
       reset();

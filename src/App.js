@@ -20,6 +20,7 @@ function App() {
   const isAuth = useSelector(isAuthState);
 
   useEffect(() => {
+    if (!isAuth) return;
     dispatch(getCurrentUserAsyncThunk());
   });
 

@@ -1,19 +1,25 @@
 .listItem {
-  display: grid;
-  grid-template-columns: 45% 35% 20%;
-  align-items: center;
-  padding: 8px 10px 8px 20px;
-  border-bottom: 1px solid rgba(73, 100, 189, 0.534);
+  display: flex;
+  justify-content: space-between;
+  min-width: 280px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  border-bottom: 1px solid #182c57;
+}
+
+.listItem:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .name {
+  flex-basis: 50%;
   font-weight: bold;
   text-transform: capitalize;
 }
 
 .deleteBtn {
-  padding: 5px 10px;
-  border: 1px solid gray;
+  padding: 5px 5px;
+  border: 1px solid #182c57;
   border-radius: 20px;
   background-color: transparent;
   cursor: pointer;
@@ -23,5 +29,32 @@
 .deleteBtn:hover,
 .deleteBtn:focus {
   color: rgb(14, 9, 78);
-  background-color: rgb(252, 170, 170);
+  background-color: rgb(250, 193, 193);
+}
+
+.deleteBtn:focus {
+  outline: 2px solid #182c57;
+  outline-offset: 2px;
+}
+
+.icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  fill: #182c57;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .listItem {
+    font-size: 18px;
+  }
+
+  .listItem:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
 }

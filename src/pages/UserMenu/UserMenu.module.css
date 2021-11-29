@@ -1,0 +1,73 @@
+.UserMenu {
+  display: flex;
+  align-items: center;
+}
+
+.mailLink {
+  width: 120px;
+  margin-bottom: 0;
+  margin-right: 40px;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  /* border-radius: 18px; */
+  color: #000;
+  /* background-color: rgba(255, 255, 255, 0.15); */
+  cursor: pointer;
+}
+
+.mailLink::after {
+  content: '';
+  display: block;
+  height: 2px;
+  transform: scaleX(0.5);
+  background-color: #000000;
+  opacity: 0;
+  transition: opacity 250ms, transform 250ms;
+}
+
+.mailLink:hover,
+.mailLink:focus {
+  color: #000;
+}
+
+.mailLink:hover::after,
+.mailLink:focus::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.logoutBtn {
+  width: 120px;
+  padding: 5px 15px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  /* border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.15); */
+  cursor: pointer;
+}
+
+.logoutBtn::after {
+  content: '';
+  display: block;
+  height: 2px;
+  transform: scaleX(0.5);
+  background-color: #000000;
+  opacity: 0;
+  transition: opacity 250ms, transform 250ms;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  color: #000;
+}
+
+.logoutBtn:hover::after,
+.logoutBtn:focus::after {
+  opacity: 1;
+  transform: scaleX(1);
+}

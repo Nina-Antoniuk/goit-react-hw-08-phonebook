@@ -1,0 +1,42 @@
+.UnauthorizedUser {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.Nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.NavItem:not(:last-child) {
+  margin-right: 30px;
+}
+
+.NavLink {
+  text-decoration: none;
+  color: inherit;
+  transition: color 250ms;
+}
+
+.NavLink::after {
+  content: '';
+  display: block;
+  height: 2px;
+  transform: scaleX(0.5);
+  background-color: #000000;
+  opacity: 0;
+  transition: opacity 250ms, transform 250ms;
+}
+
+.NavLink:hover,
+.NavLink:focus {
+  color: #000;
+}
+
+.NavLink:hover::after,
+.NavLink:focus::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
